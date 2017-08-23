@@ -15,8 +15,8 @@ for isub = 1:4;
             names = {'intact', 'scrmabled-fixed', 'scrambled-random'};
             % duration is always 5 TR's 
             durations{1} = 25;
-            %durations{2} = [5];
-            %durations{3} = [5];
+            durations{2} = 25;
+            durations{3} = 25;
             
             % now get the onsets
             nreps = 3;
