@@ -14,15 +14,17 @@ for isub = 1:4;
             % cell array of condition names
             names = {'intact', 'scrmabled-fixed', 'scrambled-random'};
             % duration is always 5 TR's 
-            durations = {'5','5','5'};
-
+            durations{1} = 25;
+            %durations{2} = [5];
+            %durations{3} = [5];
+            
             % now get the onsets
             nreps = 3;
             allrunseq = [];
             for irep = 1:nreps
                 allrunseq = [allrunseq;RETRIEVAL(irep).sequence(:,3:4)];
             end % end irep
-
+            
 
             % identify which order within the run of each condition (ignoring specific
             % sequences for now)
@@ -50,7 +52,7 @@ for isub = 1:4;
                 if intact_idx_tmp(icond) == 1
                     onsets_tmp(1,icond) = 8;
                 else
-                    onsets_tmp(1,icond) = intact_idx_tmp(icond) *5 + 3;
+                    onsets_tmp(1,icond) = (intact_idx_tmp(icond)-1) *25 + 8;
                 end % end if  
             end % end icond
 
@@ -61,7 +63,7 @@ for isub = 1:4;
                 if scrambled_idx_tmp(icond) == 1
                     onsets_tmp(1,icond) = 8;
                 else
-                    onsets_tmp(1,icond) = scrambled_idx_tmp(icond) *5 + 3;
+                    onsets_tmp(1,icond) = (scrambled_idx_tmp(icond)-1) *25 + 8;
                 end % end if  
             end % end icond
 
@@ -72,7 +74,7 @@ for isub = 1:4;
                 if random_idx_tmp(icond) == 1
                     onsets_tmp(1,icond) = 8;
                 else
-                    onsets_tmp(1,icond) = random_idx_tmp(icond) *5 + 3;
+                    onsets_tmp(1,icond) = (random_idx_tmp(icond)-1) *25 + 8;
                 end % end if  
             end % end icond
 
