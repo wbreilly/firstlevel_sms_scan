@@ -54,7 +54,7 @@ for isub = 1:4;
                 end % end if  
             end % end icond
 
-            onsets{1} = num2cell(onsets_tmp);
+            onsets{1} = onsets_tmp;
             onsets_tmp = [];
 
             for icond = 1:length(scrambled_idx_tmp)
@@ -65,7 +65,7 @@ for isub = 1:4;
                 end % end if  
             end % end icond
 
-            onsets{2} = num2cell(onsets_tmp);
+            onsets{2} = onsets_tmp;
             onsets_tmp = [];
 
             for icond = 1:length(random_idx_tmp)
@@ -76,7 +76,7 @@ for isub = 1:4;
                 end % end if  
             end % end icond
 
-            onsets{3} = num2cell(onsets_tmp);        
+            onsets{3} = onsets_tmp;    
 
             savepath = '/Users/WBR/walter/fmri/sms_scan_analyses/firstlevel_data/';
             save(sprintf('%sfirstlevel_s%02d_rrb%d_%d.mat',savepath,isub,irrb,iblock),'names', 'durations', 'onsets');
