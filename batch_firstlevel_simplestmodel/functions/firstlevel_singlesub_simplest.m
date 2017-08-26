@@ -40,25 +40,27 @@ for i = 1:length(b.runs)
 end % end i b.runs
 
 %% get condition files from saved .mat
-pathtoconfiles = '~/walter/fmri/sms_scan_analyses/dat_for_spm/';
+%pathtoconfiles = '~/walter/fmri/sms_scan_analyses/firstlevel_con_data/';
 for i = 1:length(b.runs)
-    b.rundir(i).confile = spm_select('FPListRec', pathtoconfiles, ['^firstlevel_*' b.curSubj b.runs{1} '.*.txt']);
+    b.rundir(i).confile = ['confile_' b.curSubj '_' b.runs{i} '.mat'];
 end % end i b.runs
 
 %% Da business
 clear matlabbatch
 
 %initiate
-matlabbatch{1}.spm.stats.fmri_spec.dir = {'/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan'};
+matlabbatch{1}.spm.stats.fmri_spec.dir = cellstr(b.dataDir);
 matlabbatch{1}.spm.stats.fmri_spec.timing.units = 'scans';
 matlabbatch{1}.spm.stats.fmri_spec.timing.RT = 1.22;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t = 38;
 matlabbatch{1}.spm.stats.fmri_spec.timing.fmri_t0 = 1;
 %==========================================================================
+
+% loop through each run to build batch 
 for i = 1:length(b.runs)
     %%
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).scans = cellstr(b.rundir(i).smfiles);
-
+    
     %%
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).cond = struct('name', {}, 'onset', {}, 'duration', {}, 'tmod', {}, 'pmod', {}, 'orth', {});
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).multi = cellstr(b.rundir(i).confile);
@@ -72,7 +74,7 @@ end % end i b.runs
 
 %============================================================
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
-matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [0 0];
+matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [1 1];
 matlabbatch{1}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{1}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;

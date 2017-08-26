@@ -11,7 +11,7 @@ function [] = batch_firstlevel_wbr()
 % scriptdir = path to directory housing this script (and auxiliary scripts)
 % QAdir     = Name of output QA directory
 
-dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/batch_preproc_8_23_17';
+dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_data_8_23_17';
 scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel'; % fileparts(mfilename('fullpath'));
 
 
@@ -30,7 +30,7 @@ scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batc
 %
 %  See BIDS format
 
-subjects    = {'s001' 's002' 's003' 's004' 's007'};
+subjects    = { 's007'}; %'s001' 's002' 's003' 's004' 's007'};
 runs        = {'Rifa_1' 'Rifa_2' 'Rifa_3' 'Rifa_4' 'Rifa_5' 'Rifa_6' 'Rifa_7' 'Rifa_8' 'Rifa_9'};  
 
 %-- Auto-accept
@@ -101,7 +101,7 @@ for i = 1:length(subjects)
     
 end % i (subjects)
 
-fprintf('Done preproc script\n')
+fprintf('Whipped up a first level batch!!\n')
 diary off
 
 end % main function

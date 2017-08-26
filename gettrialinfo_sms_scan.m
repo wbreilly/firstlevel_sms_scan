@@ -5,7 +5,7 @@
 
 path = '/Users/WBR/drive/grad_school/DML_WBR/Sequences_Exp3/sms_scan_drive/sms_scan_fmri_copy/';
 
-for isub = 1:4;
+for isub = 7
     for irrb = 1:3
         for iblock = 1:3
 
@@ -79,15 +79,54 @@ for isub = 1:4;
             end % end icond
 
             onsets{3} = onsets_tmp;    
-
-            savepath = '/Users/WBR/walter/fmri/sms_scan_analyses/firstlevel_data/';
-            save(sprintf('%sfirstlevel_s%02d_rrb%d_%d.mat',savepath,isub,irrb,iblock),'names', 'durations', 'onsets');
+            
+            %where to save condition files
+            savepath = '/Users/WBR/walter/fmri/sms_scan_analyses/firstlevel_con_data/';
+            
+            % save with run naming convention (1-9)
+            % dumb way
+            
+            if irrb == 1
+                if iblock == 1;
+                    run = 1;
+                elseif iblock == 2
+                    run = 2;
+                else 
+                    run = 3;
+                end
+            elseif irrb == 2
+                if iblock == 1;
+                    run = 4;
+                elseif iblock == 2
+                    run = 5;
+                else 
+                    run = 6;
+                end
+            else
+                if iblock == 1;
+                    run = 7;
+                elseif iblock == 2
+                    run = 8;
+                else 
+                    run = 9;
+                end
+            end
+            
+            % save
+            save(sprintf('%sconfile_s%03d_Rifa_%d.mat',savepath,isub,run),'names', 'durations', 'onsets');
             
             clearvars -EXCEPT isub irrb iblock path
             
         end % end iblock
     end % end irrb
 end % end isub
+
+
+
+
+
+
+
 
 
 
