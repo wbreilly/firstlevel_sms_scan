@@ -82,7 +82,7 @@ end % end i b.runs
 
 %============================================================
 matlabbatch{1}.spm.stats.fmri_spec.fact = struct('name', {}, 'levels', {});
-matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [1 1];
+matlabbatch{1}.spm.stats.fmri_spec.bases.hrf.derivs = [];
 matlabbatch{1}.spm.stats.fmri_spec.volt = 1;
 matlabbatch{1}.spm.stats.fmri_spec.global = 'None';
 matlabbatch{1}.spm.stats.fmri_spec.mthresh = 0.8;

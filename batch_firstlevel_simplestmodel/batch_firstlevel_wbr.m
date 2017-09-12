@@ -84,7 +84,7 @@ for i = 1:length(subjects)
     
     % Check whether first level has already been run for a subject
     
-    % Initialize diary for saving output
+    % Initialize diary for saving outpuwt
     diaryname = fullfile(b.dataDir, 'firstlevel_simplest_diary_output.txt');
     diary(diaryname);
     
