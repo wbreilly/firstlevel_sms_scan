@@ -5,7 +5,7 @@
 
 path = '/Users/WBR/drive/grad_school/DML_WBR/Sequences_Exp3/sms_scan_drive/sms_scan_fmri_copy/';
 
-for isub = 7
+for isub = 8
     for irrb = 1:3
         for iblock = 1:3
 

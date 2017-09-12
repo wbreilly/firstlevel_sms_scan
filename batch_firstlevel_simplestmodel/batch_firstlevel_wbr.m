@@ -11,7 +11,7 @@ function [] = batch_firstlevel_wbr()
 % scriptdir = path to directory housing this script (and auxiliary scripts)
 % QAdir     = Name of output QA directory
 
-dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_data_8_23_17';
+dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_9_12_17_spikeregs';
 scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel'; % fileparts(mfilename('fullpath'));
 
 
@@ -30,7 +30,7 @@ scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batc
 %
 %  See BIDS format
 
-subjects    = { 's007'}; %'s001' 's002' 's003' 's004' 's007'};
+subjects    = {'s001' 's002' 's003' 's004' 's007' 's008'};
 runs        = {'Rifa_1' 'Rifa_2' 'Rifa_3' 'Rifa_4' 'Rifa_5' 'Rifa_6' 'Rifa_7' 'Rifa_8' 'Rifa_9'};  
 
 %-- Auto-accept
@@ -40,7 +40,7 @@ runs        = {'Rifa_1' 'Rifa_2' 'Rifa_3' 'Rifa_4' 'Rifa_5' 'Rifa_6' 'Rifa_7' 'R
 
 auto_accept = 0;
 
-% coreg flag. if ) don't coregister again
+% coreg flag. if 0 don't coregister again
 coreg_flag = 1;
 
 

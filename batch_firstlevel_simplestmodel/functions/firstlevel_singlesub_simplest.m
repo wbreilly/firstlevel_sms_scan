@@ -26,10 +26,18 @@ function [b] = firstlevel_singlesub_simplest(b)
 % 
 %       b.rundir.smfiles  = smoothed volumes
 
-%% get motion regressor rp file names
+%% get motion regressor rp file names 
+% remember to change batch to specify rp if change back to rp from spike
+% reg
+% for i = 1:length(b.runs)
+%     b.rundir(i).rp     = spm_select('FPListRec', b.dataDir, ['^rp.*' b.runs{i} '.*bold\.txt']);
+%     fprintf('%02d:   %s\n', i, b.rundir(i).rp)
+% end
+
+%% get spike regressor file names
 for i = 1:length(b.runs)
-    b.rundir(i).rp     = spm_select('FPListRec', b.dataDir, ['^rp.*' b.runs{i} '.*bold\.txt']);
-    fprintf('%02d:   %s\n', i, b.rundir(i).rp)
+    b.rundir(i).spike     = spm_select('FPListRec', b.dataDir, ['^spike.*' b.runs{i} '.*\.txt']);
+    fprintf('%02d:   %s\n', i, b.rundir(i).spike)
 end
 
 %% get smoothed nii names
@@ -65,7 +73,7 @@ for i = 1:length(b.runs)
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).cond = struct('name', {}, 'onset', {}, 'duration', {}, 'tmod', {}, 'pmod', {}, 'orth', {});
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).multi = cellstr(b.rundir(i).confile);
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).regress = struct('name', {}, 'val', {});
-    matlabbatch{1}.spm.stats.fmri_spec.sess(i).multi_reg = cellstr(b.rundir(i).rp);
+    matlabbatch{1}.spm.stats.fmri_spec.sess(i).multi_reg = cellstr(b.rundir(i).spike);
     matlabbatch{1}.spm.stats.fmri_spec.sess(i).hpf = 128;
     %%
 
