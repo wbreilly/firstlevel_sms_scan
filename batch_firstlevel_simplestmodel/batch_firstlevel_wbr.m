@@ -11,7 +11,7 @@ function [] = batch_firstlevel_wbr()
 % scriptdir = path to directory housing this script (and auxiliary scripts)
 % QAdir     = Name of output QA directory
 
-dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_9_12_17_spikeregs';
+dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_9_12_17_spike_noderiv';
 scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel'; % fileparts(mfilename('fullpath'));
 
 
