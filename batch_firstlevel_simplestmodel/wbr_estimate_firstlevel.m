@@ -3,7 +3,7 @@
 dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_9_12_17_spike_noderiv';
 scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel'; % fileparts(mfilename('fullpath'));
 
-subjects    = {'s001' 's002' 's003' 's004' 's007' 's008'};
+subjects    = {'s009' 's010' 's011' 's015' 's016' 's018' 's019' };%{'s001' 's002' 's003' 's004' 's007' 's008'};
 
 cd(sprintf('%s', dataDir))
 

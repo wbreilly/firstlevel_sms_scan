@@ -1,4 +1,4 @@
-function [] = batch_firstlevel_wbr()
+% function [] = batch_firstlevel_wbr()
 % Walter Reilly's spm first level script, Maureen Ritchey var style
 
 %====================================================================================
@@ -11,7 +11,7 @@ function [] = batch_firstlevel_wbr()
 % scriptdir = path to directory housing this script (and auxiliary scripts)
 % QAdir     = Name of output QA directory
 
-dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_9_12_17_spike_noderiv';
+dataDir     = '/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_5_3_18';
 scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel'; % fileparts(mfilename('fullpath'));
 
 
@@ -30,7 +30,7 @@ scriptdir   = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batc
 %
 %  See BIDS format
 
-subjects    = {'s001' 's002' 's003' 's004' 's007' 's008'};
+subjects    = {'s001' 's002' 's003' 's004' 's007' 's008' 's009' 's010' 's011' 's015' 's016' 's018' 's019' 's020' 's022' 's023' 's024' 's025'};
 runs        = {'Rifa_1' 'Rifa_2' 'Rifa_3' 'Rifa_4' 'Rifa_5' 'Rifa_6' 'Rifa_7' 'Rifa_8' 'Rifa_9'};  
 
 %-- Auto-accept
@@ -68,40 +68,61 @@ end
 
 fprintf('Running first level script')
 
-    
+%     
+%     %--Loop over subjects
+% for i = length(subjects)
+%     
+%     % Define variables for individual subjects - General
+%     b.curSubj   = subjects{i};
+%     b.runs      = runs;
+%     b.dataDir   = fullfile(dataDir, b.curSubj);
+%         
+%     % Define variables for individual subjects - QA General
+%     b.scriptdir   = scriptdir;
+%     b.auto_accept = auto_accept;
+%     b.messages    = sprintf('Messages for subject %s:\n', subjects{i});
+%     
+%     % Check whether first level has already been run for a subject
+%     
+%     % Initialize diary for saving outpuwt
+%     diaryname = fullfile(b.dataDir, 'firstlevel_simplest_diary_output.txt');
+%     diary(diaryname);
+%     
+%     %======================================================================
+%     % Run functions (at this point, this could all be in one
+%     % script/function, but where's the fun in that?
+%     %======================================================================
+%     
+%     % Run first level
+%     fprintf('--First leveling--\n')
+%     [b] = firstlevel_singlesub_simplest(b);
+%     fprintf('------------------------------------------------------------\n')
+%     fprintf('\n')
+%     
+% end % i (subjects)
+% 
+% fprintf('Whipped up a first level batch!!\n')
+% diary off
+% 
+% % estimate 
+cd(sprintf('%s', dataDir))
+
     %--Loop over subjects
-for i = 1:length(subjects)
-    
-    % Define variables for individual subjects - General
-    b.curSubj   = subjects{i};
-    b.runs      = runs;
-    b.dataDir   = fullfile(dataDir, b.curSubj);
-        
-    % Define variables for individual subjects - QA General
-    b.scriptdir   = scriptdir;
-    b.auto_accept = auto_accept;
-    b.messages    = sprintf('Messages for subject %s:\n', subjects{i});
-    
-    % Check whether first level has already been run for a subject
-    
-    % Initialize diary for saving outpuwt
-    diaryname = fullfile(b.dataDir, 'firstlevel_simplest_diary_output.txt');
-    diary(diaryname);
-    
-    %======================================================================
-    % Run functions (at this point, this could all be in one
-    % script/function, but where's the fun in that?
-    %======================================================================
-    
-    % Run first level
-    fprintf('--First leveling--\n')
-    [b] = firstlevel_singlesub_simplest(b);
-    fprintf('------------------------------------------------------------\n')
-    fprintf('\n')
-    
-end % i (subjects)
+for i = 10:length(subjects)
+    cd(sprintf('%s', subjects{i}))
+    matlabbatch{1}.spm.stats.fmri_est.spmmat = cellstr(sprintf('/Users/wbr/walter/fmri/sms_scan_analyses/data_for_spm/firstlevel_5_3_18/%s/spm.mat', subjects{i}));
+    matlabbatch{1}.spm.stats.fmri_est.write_residuals = 0;
+    matlabbatch{1}.spm.stats.fmri_est.method.Classical = 1;
+ 
+    spm('defaults','fmri');
+    spm_jobman('initcfg');
+    spm_jobman('run',matlabbatch);
+    cd ..
+end
 
-fprintf('Whipped up a first level batch!!\n')
-diary off
+% run
 
-end % main function
+
+
+
+

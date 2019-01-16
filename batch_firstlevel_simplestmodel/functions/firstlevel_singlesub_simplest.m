@@ -43,14 +43,14 @@ end
 %% get smoothed nii names
 for i = 1:length(b.runs)
     % print success
-    b.rundir(i).smfiles = spm_select('ExtFPListRec', b.dataDir, ['^smooth.*'  b.runs{i} '.*bold\.nii']);
+    b.rundir(i).smfiles = spm_select('ExtFPListRec', b.dataDir, ['^smoothed_norm.*'  b.runs{i} '.*bold\.nii']);
     fprintf('%02d:   %0.0f smoothed files found.\n', i, length(b.rundir(i).smfiles))
 end % end i b.runs
 
 %% get condition files from saved .mat
-%pathtoconfiles = '~/walter/fmri/sms_scan_analyses/firstlevel_con_data/';
+pathtoconfiles = '/Users/wbr/walter/fmri/sms_scan_analyses/firstlevel_sms_scan/batch_firstlevel_simplestmodel/con_mats_Pmod_5_6_18/';
 for i = 1:length(b.runs)
-    b.rundir(i).confile = ['confile_' b.curSubj '_' b.runs{i} '.mat'];
+    b.rundir(i).confile = [pathtoconfiles 'confile_' b.curSubj '_' b.runs{i} '.mat'];
 end % end i b.runs
 
 %% Da business
